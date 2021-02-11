@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import NavBar from "./components/NavBar";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Testimonial } from "./components/testimonial/Testimonial";
+import { COUNTRY_CONTENT } from "./constants/countryContent";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <NavBar />
+        <Route
+          exact
+          path="/us"
+          render={() => (
+            <Testimonial country="US" variant={COUNTRY_CONTENT["US"].variant} />
+          )}
+        />
+        <Route
+          exact
+          path="/india"
+          render={() => (
+            <Testimonial
+              country="INDIA"
+              variant={COUNTRY_CONTENT["INDIA"].variant}
+            />
+          )}
+        />
+      </Router>
     </div>
   );
 }
